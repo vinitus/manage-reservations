@@ -10,22 +10,22 @@
 </svelte:head>
 
 <section>
-	<h1>
+	<!-- <h1>
 		<span class="welcome">
 			<picture>
-				<source srcset={welcome} type="image/webp" />
+				<source srcset={welcome} type="image/webp" /> 의미 파익하기
 				<img src={welcome_fallback} alt="Welcome" />
 			</picture>
 		</span>
 
-		to your new<br />SvelteKit app
+		to your new<br />SvelteKit app << 그냥 h1 렌더링
 	</h1>
 
 	<h2>
 		try editing <strong>src/routes/+page.svelte</strong>
 	</h2>
 
-	<Counter />
+	<Counter /> // 컴포넌트인 듯?-->
 </section>
 
 <style>
