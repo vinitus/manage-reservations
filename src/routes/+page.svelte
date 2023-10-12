@@ -26,9 +26,17 @@
 	</h2>
 
 	<Counter /> // 컴포넌트인 듯?-->
+	<div class="wrapper" />
 </section>
 
 <style>
+	.wrapper {
+		width: 977px;
+		height: 793px;
+		background-color: #f5f5f4;
+		border-radius: 10px;
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;
