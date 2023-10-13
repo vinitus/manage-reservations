@@ -9,22 +9,22 @@
 </script>
 
 <header class="header">
-	{#if !isNew}
-		<a href="/new">
-			<button type="button">
+	<div>
+		{#if !isNew}
+			<a href="/new">
 				<img src={add} alt="add" />
 				<p>New Reservation</p>
-			</button>
-		</a>
-	{:else}
-		<a href="/">
-			<button type="button">
+			</a>
+		{:else}
+			<a href="/">
 				<img src={keyboard_backspace} alt="keyboard_backspace" />
-			</button>
-		</a>
-	{/if}
+			</a>
+		{/if}
+	</div>
 	<h1>{isNew ? 'New Reservation' : 'Reservation'}</h1>
-	<img class="close" src={close} alt="close" />
+	<div>
+		<img class="close" src={close} alt="close" />
+	</div>
 </header>
 
 <style>
@@ -44,24 +44,37 @@
 	.close {
 		width: 32px;
 		height: 32px;
-		margin: 0px 36px 0px 172px;
+		margin-right: 36px;
+		right: 0px;
+		position: absolute;
+		top: calc((100% - 32px) / 2);
 	}
 
-	.header button {
+	.header h1 {
+		width: 33%;
+	}
+
+	.header div {
+		width: 33%;
+		height: 60px;
+	}
+
+	.header a {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		background-color: #fdfdfd;
 		color: #ec551f;
-		width: 220px;
+		padding: 0px 15px;
 		height: 60px;
+		width: fit-content;
 		border: none;
 		border-radius: 10px;
 		box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 		margin-left: 20px;
 	}
 
-	.header button p {
+	.header a p {
 		line-height: 5px;
 		margin-top: 0px;
 		border-bottom-width: 0px;
