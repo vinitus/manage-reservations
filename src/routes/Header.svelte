@@ -1,6 +1,7 @@
 <script>
 	import close from '$lib/images/close.svg';
 	import add from '$lib/images/add.svg';
+	import keyboard_backspace from '$lib/images/keyboard_backspace.svg';
 	/**
 	 * @type {Boolean}
 	 */
@@ -8,12 +9,20 @@
 </script>
 
 <header class="header">
-	<a href={isNew ? '/' : '/new'}>
-		<button type="button">
-			<img src={add} alt="add" />
-			<p>New Reservation</p>
-		</button>
-	</a>
+	{#if !isNew}
+		<a href="/new">
+			<button type="button">
+				<img src={add} alt="add" />
+				<p>New Reservation</p>
+			</button>
+		</a>
+	{:else}
+		<a href="/">
+			<button type="button">
+				<img src={keyboard_backspace} alt="keyboard_backspace" />
+			</button>
+		</a>
+	{/if}
 	<h1>{isNew ? 'New Reservation' : 'Reservation'}</h1>
 	<img class="close" src={close} alt="close" />
 </header>
