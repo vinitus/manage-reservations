@@ -1,6 +1,10 @@
 <script>
 	import close from '$lib/images/close.svg';
 	import add from '$lib/images/add.svg';
+	/**
+	 * @type {Boolean}
+	 */
+	export let isNew;
 </script>
 
 <header class="header">
@@ -10,7 +14,7 @@
 			<p>New Reservation</p>
 		</button>
 	</a>
-	<h1>Reservation</h1>
+	<h1>{isNew ? 'New Reservation' : 'Reservation'}</h1>
 	<img class="close" src={close} alt="close" />
 </header>
 
