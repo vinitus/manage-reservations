@@ -8,7 +8,7 @@
 </script>
 
 <header class="header">
-	<a href="/new">
+	<a href={isNew ? '/' : '/new'}>
 		<button type="button">
 			<img src={add} alt="add" />
 			<p>New Reservation</p>
