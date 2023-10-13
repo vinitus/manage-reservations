@@ -100,7 +100,8 @@
 		justify-content: center;
 		border: none;
 		border-radius: 10px;
-		background: linear-gradient(to right bottom, #ffffff, #f1f1f1);
+		background: linear-gradient(to right bottom, #ffffff, #f9f9f8);
+		/* background-color: #f9f9f8; */
 		box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
 	}
 
