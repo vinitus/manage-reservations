@@ -9,7 +9,7 @@
 </svelte:head>
 
 <section class="wrapper">
-	<Header />
+	<Header isNew={false} />
 	<!-- <Counter /> // 컴포넌트인 듯? -->
 </section>
 

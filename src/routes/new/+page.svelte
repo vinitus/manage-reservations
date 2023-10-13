@@ -7,7 +7,7 @@
 </svelte:head>
 
 <section>
-	<Header />
+	<Header isNew={true} />
 </section>
 
 <style>
