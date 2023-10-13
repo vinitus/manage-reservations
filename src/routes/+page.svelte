@@ -30,6 +30,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		background-color: #ffffff;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
 	}
 
 	.close {
@@ -74,5 +77,6 @@
 		align-items: center;
 		flex: 0.6;
 		position: fixed;
+		background-color: #f5f5f4;
 	}
 </style>
