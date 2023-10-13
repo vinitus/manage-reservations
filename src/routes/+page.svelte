@@ -11,10 +11,12 @@
 
 <section class="wrapper">
 	<header class="header">
-		<button type="button">
-			<img src={add} alt="add" />
-			<p>New Reservation</p>
-		</button>
+		<a href="/new">
+			<button type="button">
+				<img src={add} alt="add" />
+				<p>New Reservation</p>
+			</button>
+		</a>
 		<h1>Reservation</h1>
 		<img class="close" src={close} alt="close" />
 	</header>
