@@ -2,6 +2,7 @@
 	import event_available from '$lib/images/event_available.svg';
 	import mathMinus from '$lib/images/math-minus.svg';
 	import mathPlus from '$lib/images/math-plus.svg';
+	import GradationButton from './GradationButton.svelte';
 </script>
 
 <form action="">
@@ -24,21 +25,14 @@
 				</div>
 			</label>
 		</div>
-		<button type="button" class="calendar-open-button">
-			<img src={event_available} alt="event_available" />
-			<p>Select Date</p>
-		</button>
+		<GradationButton imgSrc={event_available} alt="event_available">Select Date</GradationButton>
 	</div>
 	<div class="row">
 		<div class="counter-wrapper">
 			<p>Guests</p>
-			<button type="button">
-				<img src={mathMinus} alt="mathMinus" />
-			</button>
+			<GradationButton imgSrc={mathMinus} alt="mathMinus" width="fit-content" />
 			<p>1</p>
-			<button type="button">
-				<img src={mathPlus} alt="mathPlus" />
-			</button>
+			<GradationButton imgSrc={mathPlus} alt="mathPlus" width="fit-content" />
 		</div>
 	</div>
 </form>
