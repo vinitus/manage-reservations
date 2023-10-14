@@ -1,13 +1,12 @@
-<script>
-	/**
-	 * @type {string}
-	 */
-	export let imgSrc;
+<script lang="ts">
+	export let imgSrc: string;
+	export let alt: string;
+	export let width: string | undefined = undefined;
 </script>
 
-<button type="button" class="calendar-open-button">
-	<img src={imgSrc} alt="event_available" />
-	<p>Select Date</p>
+<button type="button" class="calendar-open-button" style={width ? `width:${width}` : ''}>
+	<img src={imgSrc} {alt} />
+	<slot />
 </button>
 
 <style>
