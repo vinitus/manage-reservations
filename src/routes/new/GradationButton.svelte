@@ -1,10 +1,10 @@
 <script lang="ts">
 	export let imgSrc: string;
 	export let alt: string;
-	export let width: string | undefined = undefined;
+	export let style: string | undefined = undefined;
 </script>
 
-<button type="button" class="calendar-open-button" style={width ? `width:${width}` : ''}>
+<button type="button" class="calendar-open-button" {style}>
 	<img src={imgSrc} {alt} />
 	<slot />
 </button>

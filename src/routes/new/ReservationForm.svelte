@@ -30,17 +30,24 @@
 	<div class="row">
 		<div class="counter-wrapper">
 			<p>Guests</p>
-			<GradationButton imgSrc={mathMinus} alt="mathMinus" width="fit-content" />
-			<p>1</p>
-			<GradationButton imgSrc={mathPlus} alt="mathPlus" width="fit-content" />
+			<GradationButton imgSrc={mathMinus} alt="mathMinus" style="width:70px; height:70px;" />
+			<p class="count-num">1</p>
+			<GradationButton imgSrc={mathPlus} alt="mathPlus" style="width:70px; height:70px;" />
 		</div>
 	</div>
 </form>
 
 <style>
+	.count-num {
+		font-size: 24px;
+		font-weight: 600;
+	}
+
 	.counter-wrapper {
+		width: 310px;
 		display: flex;
-		width: 100%;
+		justify-content: space-around;
+		align-items: center;
 	}
 
 	.counter-wrapper * {
