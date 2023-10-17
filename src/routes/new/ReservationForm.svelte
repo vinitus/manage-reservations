@@ -35,8 +35,8 @@
 			<p class="count-num">1</p>
 			<GradationButton imgSrc={mathPlus} alt="mathPlus" style="width:70px; height:70px;" />
 		</div>
+		<MultiSelect />
 	</div>
-	<MultiSelect />
 </form>
 
 <style>
