@@ -1,6 +1,6 @@
 <script lang="ts">
 	import arrowDropDown from '$lib/images/arrow_drop_down.svg';
-	export let selectNums: Set<number>;
+	export let selectTableSet: Set<number>;
 	let dropdownIsOpen = false;
 	let tableNums = [1, 2, 3, 4, 5, 6, 7, 8];
 </script>
@@ -28,9 +28,8 @@
 					on:change={(e) => {
 						const { checked } = e.currentTarget;
 						const { tableNum } = e.currentTarget.dataset;
-						if (checked) selectNums.add(Number(tableNum));
-						else selectNums.delete(Number(tableNum));
-						console.log(selectNums);
+						if (checked) selectTableSet.add(Number(tableNum));
+						else selectTableSet.delete(Number(tableNum));
 					}}
 				/>
 				<label for={`${tableNum}`}>{tableNum}</label>
