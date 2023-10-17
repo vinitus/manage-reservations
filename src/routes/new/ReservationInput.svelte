@@ -11,6 +11,7 @@
 	<input
 		type="text"
 		name="name"
+		required
 		id={labelTarget}
 		bind:value
 		on:input={changeHandler}
