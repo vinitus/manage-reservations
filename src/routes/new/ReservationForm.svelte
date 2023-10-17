@@ -4,6 +4,11 @@
 	import event_available from '$lib/images/event_available.svg';
 	import mathMinus from '$lib/images/math-minus.svg';
 	import mathPlus from '$lib/images/math-plus.svg';
+	import edit from '$lib/images/edit.svg';
+
+	let isInputStarted = false;
+	let note = '';
+	let textareaValue = '';
 </script>
 
 <form action="">
@@ -37,9 +42,56 @@
 		</div>
 		<MultiSelect />
 	</div>
+	<div class="row">
+		{#if isInputStarted}
+			<textarea
+				autofocus
+				bind:value={textareaValue}
+				name=""
+				id=""
+				class="add-note"
+				on:input={(e) => (textareaValue = e.currentTarget.value)}
+				on:blur={() => {
+					if (textareaValue.length === 0) isInputStarted = false;
+				}}
+			/>
+		{:else}
+			<div
+				class="add-note"
+				role="button"
+				tabindex="0"
+				on:click={() => {
+					isInputStarted = true;
+				}}
+				on:keydown={() => {
+					isInputStarted = true;
+				}}
+			>
+				<div class="add-note-img-wrapper">
+					Add Note... <img src={edit} alt="edit" />
+				</div>
+			</div>
+		{/if}
+	</div>
 </form>
 
 <style>
+	.add-note {
+		width: 100%;
+		height: 205px;
+		border: 1px solid #d6d3d1;
+		border-radius: 10px;
+		padding: 20px;
+		resize: none;
+		box-shadow: 0px 1px 1px 1px rgba(214, 211, 209, 0.1);
+	}
+
+	.add-note-img-wrapper {
+		display: flex;
+		align-items: center;
+		color: #a8a29e;
+	}
+
 	.count-num {
 		font-size: 24px;
 		font-weight: 600;
@@ -99,6 +151,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 30px 30px 0px 30px;
+		width: 100%;
 	}
 
 	.row button p {
