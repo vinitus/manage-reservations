@@ -124,6 +124,7 @@
 					item.push(originData);
 					return item;
 				});
+				dateTimeIsValid.update(() => false);
 
 				goto('/');
 			}}>Save</button
