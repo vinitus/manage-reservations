@@ -1,4 +1,5 @@
 <script>
+	import TimeControl from './TimeControl.svelte';
 	import alarmOn from '$lib/images/alarm_on.svg';
 	import today from '$lib/images/today.svg';
 </script>
@@ -13,6 +14,7 @@
 			<img src={today} alt="today" />
 			<input value="May 10" />
 		</div>
+		<TimeControl />
 	</div>
 </section>
 
