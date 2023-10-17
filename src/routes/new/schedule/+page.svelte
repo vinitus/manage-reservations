@@ -8,8 +8,41 @@
 
 	let time: Time;
 	let date: MyDate;
+	let monthIdx: number;
+	const months: MyDate['month'][] = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec'
+	];
 
-	newReservation.subscribe((item) => ({ time, date } = item));
+	const daysInMonth = [
+		31,
+		new Date().getUTCFullYear() % 4 === 0 ? 29 : 28,
+		31,
+		30,
+		31,
+		30,
+		31,
+		31,
+		30,
+		31,
+		30,
+		31
+	];
+
+	newReservation.subscribe((item) => {
+		({ time, date } = item);
+		monthIdx = months.indexOf(date.month);
+	});
 
 	function reset() {
 		newReservation.update((item) => {
@@ -24,6 +57,43 @@
 			return item;
 		});
 	}
+
+	function dateControlReducer() {
+		return (type: 'month' | 'day') => {
+			return {
+				increase: () => {
+					newReservation.update((item) => {
+						if (type === 'day') {
+							if (item.date[type] >= daysInMonth[monthIdx]) item.date[type] = 1;
+							else item.date[type] += 1;
+							return item;
+						} else {
+							if (monthIdx >= 11) monthIdx = 0;
+							else monthIdx += 1;
+							item.date[type] = months[monthIdx];
+							return item;
+						}
+					});
+				},
+				decrease: () => {
+					newReservation.update((item) => {
+						if (type === 'day') {
+							if (item.date[type] <= 1) item.date[type] = daysInMonth[monthIdx];
+							else item.date[type] -= 1;
+							return item;
+						} else {
+							if (monthIdx <= 0) monthIdx = 11;
+							else monthIdx -= 1;
+							item.date[type] = months[monthIdx];
+							return item;
+						}
+					});
+				}
+			};
+		};
+	}
+
+	const reducer = dateControlReducer();
 </script>
 
 <section>
@@ -57,8 +127,24 @@
 		<div class="row">
 			<img src={today} alt="today" />
 			<div class="input-wrapper">
-				<input type="text" class="month-input" value={date.month} />
-				<input type="number" class="day-input" value={date.day} />
+				<input
+					type="text"
+					class="month-input"
+					value={months[monthIdx]}
+					on:wheel={(e) => {
+						if (e.deltaY < 0) reducer('month').increase();
+						else reducer('month').decrease();
+					}}
+				/>
+				<input
+					type="number"
+					class="day-input"
+					value={date.day}
+					on:wheel={(e) => {
+						if (e.deltaY < 0) reducer('day').increase();
+						else reducer('day').decrease();
+					}}
+				/>
 			</div>
 		</div>
 		<TimeControl />
