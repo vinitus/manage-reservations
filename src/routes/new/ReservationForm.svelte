@@ -1,38 +1,59 @@
-<script>
-	import { reservationList } from '$store';
+<script lang="ts">
+	import { newReservation, type ReservationInfo } from '$store';
 	import GradationButton from './GradationButton.svelte';
 	import MultiSelect from './MultiSelect.svelte';
 	import event_available from '$lib/images/event_available.svg';
 	import mathMinus from '$lib/images/math-minus.svg';
 	import mathPlus from '$lib/images/math-plus.svg';
 	import edit from '$lib/images/edit.svg';
+	import ReservationInput from './ReservationInput.svelte';
 
 	let isInputStarted = false;
 	let textareaValue = '';
-	console.log('흠');
-	console.log(reservationList);
+
+	let reservationInfo: ReservationInfo;
+
+	newReservation.subscribe((item) => {
+		reservationInfo = item;
+	});
+
+	type ComposedEvent<T, U> = U & {
+		currentTarget: EventTarget & T;
+	};
+
+	type InputComposedEvent = ComposedEvent<HTMLInputElement, Event>;
+	type InputComposedKeyboradEvent = ComposedEvent<HTMLInputElement, KeyboardEvent>;
+
+	function nameUpdateFn(e: InputComposedEvent) {
+		const value = e.currentTarget.value;
+		newReservation.update((item) => {
+			item.name = value;
+			return item;
+		});
+	}
+	function phoneUpdateFn(e: InputComposedEvent) {
+		const value = e.currentTarget.value;
+		newReservation.update((item) => {
+			item.phone = value;
+			return item;
+		});
+	}
+
+	function escapeFn(e: InputComposedKeyboradEvent) {
+		e.key === 'Escape' && e.currentTarget.blur();
+	}
 </script>
 
 <form action="">
 	<div class="row">
-		<div class="input-wrapper">
-			<input type="text" name="name" id="name" required />
-			<label for="name">
-				<div class="placeholder-div">
-					<p>Name</p>
-					<p>*</p>
-				</div>
-			</label>
-		</div>
-		<div class="input-wrapper">
-			<input type="text" name="phone" id="phone" required />
-			<label for="phone">
-				<div class="placeholder-div">
-					<p>Phone</p>
-					<p>*</p>
-				</div>
-			</label>
-		</div>
+		<ReservationInput labelTarget="name" changeHandler={nameUpdateFn} escapeHandler={escapeFn}
+			><p>Name</p>
+			<p class="star-p">*</p>
+		</ReservationInput>
+		<ReservationInput labelTarget="phone" changeHandler={phoneUpdateFn} escapeHandler={escapeFn}>
+			<p>Phone</p>
+			<p class="star-p">*</p>
+		</ReservationInput>
 		<GradationButton imgSrc={event_available} alt="event_available"
 			><a href="/new/schedule">Select Date</a></GradationButton
 		>
@@ -80,7 +101,13 @@
 		{/if}
 	</div>
 	<div class="row last">
-		<button class="save-button">Save</button>
+		<button
+			type="button"
+			class="save-button"
+			on:click={() => {
+				console.log(reservationInfo);
+			}}>Save</button
+		>
 	</div>
 </form>
 
@@ -149,7 +176,7 @@
 		justify-content: flex-start;
 	}
 
-	.placeholder-div p:last-child {
+	.star-p {
 		color: #ed602d;
 		margin-left: 5px;
 	}
@@ -159,18 +186,6 @@
 		height: 100%;
 		margin-top: 110px;
 		background-color: #ffffff;
-	}
-
-	.input-wrapper {
-		position: relative;
-		padding: 0px 35px;
-		width: calc((100% - 40px) / 3);
-		height: 70px;
-		border: 1px solid #d6d3d1;
-		border-radius: 10px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
 	}
 
 	.row {
@@ -183,33 +198,5 @@
 
 	.row button p {
 		margin-left: 5px;
-	}
-
-	input {
-		max-width: -webkit-fill-available;
-		height: fit-content;
-		border: none;
-	}
-
-	input:focus {
-		outline: none;
-	}
-
-	label {
-		transition: all 0.2s ease-in-out;
-		position: absolute;
-		pointer-events: none;
-		top: 0px;
-		padding-left: 3px;
-	}
-
-	input:valid + label {
-		top: -20px;
-		font-size: 12px;
-	}
-
-	input:focus + label {
-		top: -20px;
-		font-size: 12px;
 	}
 </style>
