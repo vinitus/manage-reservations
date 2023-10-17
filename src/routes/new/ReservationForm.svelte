@@ -1,4 +1,5 @@
 <script>
+	import { reservationList } from '$store';
 	import GradationButton from './GradationButton.svelte';
 	import MultiSelect from './MultiSelect.svelte';
 	import event_available from '$lib/images/event_available.svg';
@@ -8,6 +9,8 @@
 
 	let isInputStarted = false;
 	let textareaValue = '';
+	console.log('흠');
+	console.log(reservationList);
 </script>
 
 <form action="">
