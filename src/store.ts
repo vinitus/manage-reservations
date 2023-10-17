@@ -48,3 +48,4 @@ export const newReservation = writable<ReservationInfo>({
 	table: [],
 	note: ''
 });
+export const dateTimeIsValid = writable<boolean>(false);
