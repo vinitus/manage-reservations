@@ -7,7 +7,6 @@
 	import edit from '$lib/images/edit.svg';
 
 	let isInputStarted = false;
-	let note = '';
 	let textareaValue = '';
 </script>
 
