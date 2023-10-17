@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { newReservation, type MyDate, type Time } from '$store';
+	import { newReservation, dateTimeIsValid, type MyDate, type Time } from '$store';
 	import GradationButton from '../GradationButton.svelte';
 	import TimeControl from './TimeControl.svelte';
 	import alarmOn from '$lib/images/alarm_on.svg';
@@ -56,6 +56,7 @@
 			};
 			return item;
 		});
+		dateTimeIsValid.update(() => false);
 	}
 
 	function dateControlReducer() {
@@ -154,6 +155,7 @@
 			>
 			<GradationButton
 				style="margin-left:35px; width: 100%; height: 52px; background: none; background-color: #E5501B;"
+				onClick={() => dateTimeIsValid.update(() => true)}
 				><a href="/new" class="save">Save</a></GradationButton
 			>
 		</div>
