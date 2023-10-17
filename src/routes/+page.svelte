@@ -28,11 +28,11 @@
 	.reservation-wrapper {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
 		margin-top: 110px;
 		width: 100%;
 		height: 100%;
-		padding: 20px 20px 0 20px;
+		padding: 20px 0px 0 20px;
+		padding-right: calc(1px);
 		overflow-y: auto;
 		scrollbar-width: none;
 		-ms-overflow-style: none;

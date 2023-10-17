@@ -139,5 +139,6 @@
 		border: none;
 		border-radius: 10px;
 		padding: 20px;
+		margin-right: calc(37px / 2);
 	}
 </style>
