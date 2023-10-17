@@ -8,6 +8,9 @@
 	import ReservationAddNote from './ReservationAddNote.svelte';
 	import { afterUpdate } from 'svelte';
 	import { goto } from '$app/navigation';
+	import type { MouseEventHandler } from 'svelte/elements';
+
+	export let submitHandler: (() => void) | undefined = undefined;
 
 	let isInputStarted = false;
 	let reservationInfo: ReservationInfo;
@@ -30,6 +33,33 @@
 
 	type InputComposedEvent = ComposedEvent<HTMLInputElement, Event>;
 	type InputComposedKeyboradEvent = ComposedEvent<HTMLInputElement, KeyboardEvent>;
+
+	function basicSubmitHander() {
+		reservationList.update((item) => {
+			const jsonStr = JSON.stringify(reservationInfo);
+			const originData = JSON.parse(jsonStr);
+			newReservation.update(() => {
+				return {
+					name: '',
+					phone: '',
+					date: {
+						month: 'May',
+						day: 10
+					},
+					time: {
+						hour: 14,
+						minute: 0
+					},
+					guests: 1,
+					table: [],
+					note: '',
+					isSeated: false
+				};
+			});
+			item.push(originData);
+			return item;
+		});
+	}
 
 	function nameUpdateFn(e: InputComposedEvent) {
 		const value = e.currentTarget.value;
@@ -100,30 +130,7 @@
 			style={isValid ? 'opacity: 1' : ''}
 			disabled={!isValid}
 			on:click={() => {
-				reservationList.update((item) => {
-					const jsonStr = JSON.stringify(reservationInfo);
-					const originData = JSON.parse(jsonStr);
-					newReservation.update(() => {
-						return {
-							name: '',
-							phone: '',
-							date: {
-								month: 'May',
-								day: 10
-							},
-							time: {
-								hour: 14,
-								minute: 0
-							},
-							guests: 1,
-							table: [],
-							note: '',
-							isSeated: false
-						};
-					});
-					item.push(originData);
-					return item;
-				});
+				!submitHandler ? basicSubmitHander() : submitHandler();
 				dateTimeIsValid.update(() => false);
 
 				goto('/');
