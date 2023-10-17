@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import arrowDropDown from '$lib/images/arrow_drop_down.svg';
+	export let selectNums: Set<number>;
 	let dropdownIsOpen = false;
+	let tableNums = [1, 2, 3, 4, 5, 6, 7, 8];
 </script>
 
 <div class="select-list">
@@ -15,34 +17,25 @@
 		<img src={arrowDropDown} alt="arrowDropDown" />
 	</div>
 	<div class="select-options" style={dropdownIsOpen ? 'display: block' : 'none'}>
-		<div class="option">
-			<input type="checkbox" name="1" id="1" value="1" />
-			<label for="1">1</label>
-		</div>
-		<div class="option">
-			<input type="checkbox" name="2" id="2" value="2" />
-			<label for="2">2</label>
-		</div>
-		<div class="option">
-			<input type="checkbox" name="3" id="3" value="3" />
-			<label for="3">3</label>
-		</div>
-		<div class="option">
-			<input type="checkbox" name="5" id="5" value="5" />
-			<label for="5">5</label>
-		</div>
-		<div class="option">
-			<input type="checkbox" name="6" id="6" value="6" />
-			<label for="6">6</label>
-		</div>
-		<div class="option">
-			<input type="checkbox" name="7" id="7" value="7" />
-			<label for="7">7</label>
-		</div>
-		<div class="option">
-			<input type="checkbox" name="8" id="8" value="8" />
-			<label for="8">8</label>
-		</div>
+		{#each tableNums as tableNum}
+			<div class="option">
+				<input
+					type="checkbox"
+					name={`${tableNum}`}
+					id={`${tableNum}`}
+					value={tableNum}
+					data-table-num={tableNum}
+					on:change={(e) => {
+						const { checked } = e.currentTarget;
+						const { tableNum } = e.currentTarget.dataset;
+						if (checked) selectNums.add(Number(tableNum));
+						else selectNums.delete(Number(tableNum));
+						console.log(selectNums);
+					}}
+				/>
+				<label for={`${tableNum}`}>{tableNum}</label>
+			</div>
+		{/each}
 	</div>
 </div>
 
