@@ -10,6 +10,7 @@
 	let isInputStarted = false;
 	let reservationInfo: ReservationInfo;
 	let selectTableSet = new Set<number>();
+	let dropdownIsOpen = false;
 
 	newReservation.subscribe((item) => {
 		reservationInfo = item;
@@ -58,7 +59,7 @@
 	</div>
 	<div class="row">
 		<ReservationGuestsCounter {reservationInfo} />
-		<MultiSelect {selectTableSet} />
+		<MultiSelect {dropdownIsOpen} {selectTableSet} />
 	</div>
 	<div class="row">
 		<ReservationAddNote {isInputStarted} {reservationInfo} />
@@ -69,7 +70,7 @@
 			class="save-button"
 			on:click={() => {
 				newReservation.update((item) => {
-					item.table = Array.from(selectTableSet);
+					item.table = Array.from(selectTableSet).sort();
 					return item;
 				});
 				console.log(reservationInfo);

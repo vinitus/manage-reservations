@@ -1,40 +1,70 @@
 <script lang="ts">
 	import arrowDropDown from '$lib/images/arrow_drop_down.svg';
+
 	export let selectTableSet: Set<number>;
-	let dropdownIsOpen = false;
+	export let dropdownIsOpen: boolean;
+
 	let tableNums = [1, 2, 3, 4, 5, 6, 7, 8];
+	function makeTimeout() {
+		let timeout: number | null = null;
+		return {
+			make: () => {
+				timeout = setTimeout(() => {
+					dropdownIsOpen = false;
+				}, 0);
+			},
+			reset: () => {
+				timeout && clearTimeout(timeout);
+			}
+		};
+	}
+
+	const dropdownController = makeTimeout();
 </script>
 
-<div class="select-list">
-	<div
-		role="button"
-		class="title"
-		on:click={() => (dropdownIsOpen = !dropdownIsOpen)}
-		tabindex={0}
-		on:keydown={() => (dropdownIsOpen = !dropdownIsOpen)}
-	>
-		Select Table
-		<img src={arrowDropDown} alt="arrowDropDown" />
-	</div>
-	<div class="select-options" style={dropdownIsOpen ? 'display: block' : 'none'}>
-		{#each tableNums as tableNum}
-			<div class="option">
-				<input
-					type="checkbox"
-					name={`${tableNum}`}
-					id={`${tableNum}`}
-					value={tableNum}
-					data-table-num={tableNum}
-					on:change={(e) => {
-						const { checked } = e.currentTarget;
-						const { tableNum } = e.currentTarget.dataset;
-						if (checked) selectTableSet.add(Number(tableNum));
-						else selectTableSet.delete(Number(tableNum));
-					}}
-				/>
-				<label for={`${tableNum}`}>{tableNum}</label>
-			</div>
-		{/each}
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div
+	on:focusin={(e) => {
+		dropdownController.reset();
+	}}
+	on:focusout={(e) => {
+		dropdownController.make();
+	}}
+>
+	<div class="select-list" role="button" tabindex={0}>
+		<div
+			role="button"
+			class="title"
+			tabindex={0}
+			on:click={(e) => {
+				dropdownIsOpen = !dropdownIsOpen;
+			}}
+			on:keydown={() => (dropdownIsOpen = !dropdownIsOpen)}
+		>
+			Select Table
+			<img src={arrowDropDown} alt="arrowDropDown" />
+		</div>
+		<div class="select-options" style={dropdownIsOpen ? 'display: block' : 'none'}>
+			{#each tableNums as tableNum}
+				<div class="option">
+					<input
+						type="checkbox"
+						name={`${tableNum}`}
+						id={`${tableNum}`}
+						value={tableNum}
+						data-table-num={tableNum}
+						on:change={(e) => {
+							const { checked } = e.currentTarget;
+							const { tableNum } = e.currentTarget.dataset;
+							if (checked) selectTableSet.add(Number(tableNum));
+							else selectTableSet.delete(Number(tableNum));
+						}}
+					/>
+					<label for={`${tableNum}`}>{tableNum}</label>
+				</div>
+			{/each}
+		</div>
 	</div>
 </div>
 
