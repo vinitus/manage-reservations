@@ -16,6 +16,24 @@
 		if (word.length === 1) return '0' + word;
 		return word;
 	}
+
+	const months = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec'
+	];
+
+	console.log(months.indexOf(new Date().getMonth().toString()).toString());
+	console.log(new Date().getMonth());
 </script>
 
 <div class="reservation">
@@ -29,7 +47,11 @@
 	<div class="row">
 		<img src={checkedCalendar} alt="checkedCalendar" class="img-margin" />
 		<div class="row">
-			<p>{date.month} {date.day}</p>
+			{#if date.month === months[new Date().getMonth()] && date.day === new Date().getDate()}
+				<p>Today</p>
+			{:else}
+				<p>{date.month} {date.day}</p>
+			{/if}
 			<p>,</p>
 			<p>
 				{time.hour > 12 ? time.hour - 12 : time.hour}:{transformDigit(time.minute)}
