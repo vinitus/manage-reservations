@@ -5,6 +5,7 @@
 	import group from '$lib/images/group.svg';
 	import edit from '$lib/images/edit.svg';
 	import trash from '$lib/images/trash.svg';
+	import { goto } from '$app/navigation';
 
 	export let reservationInfo: ReservationInfo;
 	export let reservationIdx: number;
@@ -36,7 +37,17 @@
 	console.log(new Date().getMonth());
 </script>
 
-<div class="reservation">
+<div
+	role="button"
+	tabindex={0}
+	class="reservation"
+	on:click={() => {
+		goto(`/edit/${reservationIdx}`);
+	}}
+	on:keydown={() => {
+		goto(`/edit/${reservationIdx}`);
+	}}
+>
 	<div class="row">
 		<p class="name">{name}</p>
 		<div class="row phone-wrapper">
