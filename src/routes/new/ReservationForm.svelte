@@ -30,7 +30,9 @@
 				</div>
 			</label>
 		</div>
-		<GradationButton imgSrc={event_available} alt="event_available">Select Date</GradationButton>
+		<GradationButton imgSrc={event_available} alt="event_available"
+			><a href="/new/schedule">Select Date</a></GradationButton
+		>
 	</div>
 	<div class="row">
 		<div class="counter-wrapper">
