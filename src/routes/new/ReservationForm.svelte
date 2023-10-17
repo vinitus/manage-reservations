@@ -103,6 +103,24 @@
 				reservationList.update((item) => {
 					const jsonStr = JSON.stringify(reservationInfo);
 					const originData = JSON.parse(jsonStr);
+					newReservation.update(() => {
+						return {
+							name: '',
+							phone: '',
+							date: {
+								month: 'May',
+								day: 10
+							},
+							time: {
+								hour: 14,
+								minute: 0
+							},
+							guests: 1,
+							table: [],
+							note: '',
+							isSeated: false
+						};
+					});
 					item.push(originData);
 					return item;
 				});
