@@ -19,8 +19,6 @@
 			minute: transformDigit(minute),
 			ampm: hour >= 12 ? 'PM' : 'AM'
 		};
-
-		console.log(renderTime);
 	});
 
 	function transformDigit(value: string | number) {
@@ -67,8 +65,6 @@
 	}
 
 	afterUpdate(() => {
-		console.log(hour, typeof hour);
-
 		renderTime = {
 			hour: transformDigit(hour24Tohour12(hour)),
 			minute: transformDigit(minute),
