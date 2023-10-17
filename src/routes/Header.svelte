@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
 	import close from '$lib/images/close.svg';
 	import add from '$lib/images/add.svg';
 	import keyboard_backspace from '$lib/images/keyboard_backspace.svg';
-	/**
-	 * @type {Boolean}
-	 */
-	export let isNew;
+	import { reservationList } from '$store';
+	export let isNew: boolean;
+
+	let length: number;
+	reservationList.subscribe((item) => (length = item.length));
 </script>
 
 <header class="header">
@@ -21,7 +22,14 @@
 			</a>
 		{/if}
 	</div>
-	<h1>{isNew ? 'New Reservation' : 'Reservation'}</h1>
+	<div class="row">
+		{#if length > 0 && !isNew}
+			<h1 style="">{isNew ? 'New Reservation' : 'Reservation'}</h1>
+			<p class="length-p" style="margin-right: auto;">{length}</p>
+		{:else}
+			<h1 style="">{isNew ? 'New Reservation' : 'Reservation'}</h1>
+		{/if}
+	</div>
 	<div>
 		<img class="close" src={close} alt="close" />
 	</div>
@@ -50,8 +58,26 @@
 		top: calc((100% - 32px) / 2);
 	}
 
-	.header h1 {
+	.length-p {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		font-size: 20px;
+		border-radius: 25px;
+		background-color: #e9531d;
+		color: #ffffff;
+	}
+
+	.row h1 {
+		margin-left: auto;
+	}
+
+	.row {
 		width: 33%;
+		display: flex;
+		align-items: center;
 	}
 
 	.header div {
