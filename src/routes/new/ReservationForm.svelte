@@ -53,13 +53,7 @@
 
 	function finalCheckFn() {
 		let flag = true;
-		if (
-			!reservationInfo.name ||
-			!reservationInfo.phone ||
-			reservationInfo.table.length === 0 ||
-			!dateTimeDone
-		)
-			flag = false;
+		if (!reservationInfo.name || !reservationInfo.phone || !dateTimeDone) flag = false;
 
 		isValid = flag;
 	}
