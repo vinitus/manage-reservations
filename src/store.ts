@@ -1,11 +1,23 @@
 import { writable } from 'svelte/store';
 
-interface MyDate {
-	month: number;
+export interface MyDate {
+	month:
+		| 'Jan'
+		| 'Feb'
+		| 'Mar'
+		| 'Apr'
+		| 'May'
+		| 'Jun'
+		| 'Jul'
+		| 'Aug'
+		| 'Sep'
+		| 'Oct'
+		| 'Nov'
+		| 'Dec';
 	day: number;
 }
 
-interface Time {
+export interface Time {
 	hour: number;
 	minute: number;
 }
@@ -25,7 +37,7 @@ export const newReservation = writable<ReservationInfo>({
 	name: '',
 	phone: '',
 	date: {
-		month: 1,
+		month: 'Jan',
 		day: 1
 	},
 	time: {
