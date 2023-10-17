@@ -1,5 +1,6 @@
 <script>
 	import GradationButton from './GradationButton.svelte';
+	import MultiSelect from './MultiSelect.svelte';
 	import event_available from '$lib/images/event_available.svg';
 	import mathMinus from '$lib/images/math-minus.svg';
 	import mathPlus from '$lib/images/math-plus.svg';
@@ -35,6 +36,7 @@
 			<GradationButton imgSrc={mathPlus} alt="mathPlus" style="width:70px; height:70px;" />
 		</div>
 	</div>
+	<MultiSelect />
 </form>
 
 <style>
