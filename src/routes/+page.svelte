@@ -1,6 +1,11 @@
-<script>
+<script lang="ts">
 	import Header from './Header.svelte';
-	import ReservationInfo from './ReservationInfo.svelte';
+	import ReservationInfoComponent from './ReservationInfoComponent.svelte';
+	import { reservationList, type ReservationInfo } from '$store';
+
+	let list: ReservationInfo[];
+
+	reservationList.subscribe((item) => (list = item));
 </script>
 
 <svelte:head>
@@ -11,10 +16,9 @@
 <section class="wrapper">
 	<Header isNew={false} />
 	<div class="reservation-wrapper">
-		<ReservationInfo />
-		<ReservationInfo />
-		<ReservationInfo />
-		<ReservationInfo />
+		{#each list as reservationInfo}
+			<ReservationInfoComponent {reservationInfo} />
+		{/each}
 	</div>
 </section>
 
