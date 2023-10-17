@@ -107,7 +107,9 @@
 			disabled={!isValid}
 			on:click={() => {
 				reservationList.update((item) => {
-					item.push(reservationInfo);
+					const jsonStr = JSON.stringify(reservationInfo);
+					const originData = JSON.parse(jsonStr);
+					item.push(originData);
 					return item;
 				});
 
