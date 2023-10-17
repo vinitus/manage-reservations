@@ -10,7 +10,6 @@
 	let date: MyDate;
 
 	newReservation.subscribe((item) => ({ time, date } = item));
-	const tmp = 12;
 </script>
 
 <section>
@@ -18,7 +17,11 @@
 		<div class="row">
 			<img src={alarmOn} alt="alarmOn" />
 			<div class="input-wrapper">
-				<input class="time-input" type="number" value={`${tmp - 12 <= 0 ? tmp : tmp - 12}`} />
+				<input
+					class="time-input"
+					type="number"
+					value={`${time.hour - 12 <= 0 ? time.hour : time.hour - 12}`}
+				/>
 				<p>:</p>
 				<input
 					class="time-input"
@@ -33,7 +36,7 @@
 					type="text"
 					class="time-input"
 					style="width: 30px;"
-					value={`${Number(tmp) - 12 < 0 ? 'AM' : 'PM'}`}
+					value={`${Number(time.hour) - 12 < 0 ? 'AM' : 'PM'}`}
 				/>
 			</div>
 		</div>
