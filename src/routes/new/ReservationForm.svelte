@@ -1,8 +1,8 @@
 <script>
+	import GradationButton from './GradationButton.svelte';
 	import event_available from '$lib/images/event_available.svg';
 	import mathMinus from '$lib/images/math-minus.svg';
 	import mathPlus from '$lib/images/math-plus.svg';
-	import GradationButton from './GradationButton.svelte';
 </script>
 
 <form action="">
