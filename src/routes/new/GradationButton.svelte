@@ -1,10 +1,13 @@
 <script lang="ts">
+	import type { MouseEventHandler } from 'svelte/elements';
+
 	export let imgSrc: string | undefined = undefined;
 	export let alt: string | undefined = undefined;
 	export let style: string | undefined = undefined;
+	export let onClick: MouseEventHandler<HTMLButtonElement> | undefined = undefined;
 </script>
 
-<button type="button" class="calendar-open-button" {style}>
+<button type="button" class="calendar-open-button" {style} on:click={onClick}>
 	<img src={imgSrc} {alt} />
 	<slot />
 </button>
