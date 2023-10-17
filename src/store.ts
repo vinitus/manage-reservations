@@ -10,7 +10,7 @@ interface Time {
 	second: number;
 }
 
-interface ReservationInfo {
+export interface ReservationInfo {
 	name: string;
 	phone: string;
 	date: MyDate;
