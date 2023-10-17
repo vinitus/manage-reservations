@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { newReservation, dateTimeIsValid, type ReservationInfo } from '$store';
+	import { newReservation, dateTimeIsValid, reservationList, type ReservationInfo } from '$store';
 	import GradationButton from './GradationButton.svelte';
 	import MultiSelect from './MultiSelect.svelte';
 	import event_available from '$lib/images/event_available.svg';
@@ -7,6 +7,7 @@
 	import ReservationGuestsCounter from './ReservationGuestsCounter.svelte';
 	import ReservationAddNote from './ReservationAddNote.svelte';
 	import { afterUpdate } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	let isInputStarted = false;
 	let reservationInfo: ReservationInfo;
@@ -105,7 +106,12 @@
 			style={isValid ? 'opacity: 1' : ''}
 			disabled={!isValid}
 			on:click={() => {
-				console.log(reservationInfo);
+				reservationList.update((item) => {
+					item.push(reservationInfo);
+					return item;
+				});
+
+				goto('/');
 			}}>Save</button
 		>
 	</div>
