@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { FormEventHandler, KeyboardEventHandler } from 'svelte/elements';
 
+	export let value: string;
 	export let changeHandler: FormEventHandler<HTMLInputElement>;
 	export let escapeHandler: KeyboardEventHandler<HTMLInputElement>;
 	export let labelTarget: string;
@@ -11,7 +12,7 @@
 		type="text"
 		name="name"
 		id={labelTarget}
-		required
+		bind:value
 		on:input={changeHandler}
 		on:change={changeHandler}
 		on:keydown={escapeHandler}
