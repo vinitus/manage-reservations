@@ -75,9 +75,30 @@
 			</div>
 		{/if}
 	</div>
+	<div class="row last">
+		<button class="save-button">Save</button>
+	</div>
 </form>
 
 <style>
+	.last {
+		bottom: 0px;
+		position: absolute;
+	}
+
+	.save-button {
+		width: 100%;
+		height: 90px;
+		border: none;
+		border-radius: 10px;
+		color: #ffffff;
+		font-size: 20px;
+		background-color: #e55222;
+		opacity: 0.5;
+		margin-top: auto;
+		margin-bottom: 30px;
+	}
+
 	.add-note {
 		width: 100%;
 		height: 205px;
