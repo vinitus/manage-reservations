@@ -5,19 +5,20 @@ interface MyDate {
 	day: number;
 }
 
-interface time {
+interface Time {
 	minute: number;
 	second: number;
 }
 
-interface reservationInfo {
+interface ReservationInfo {
 	name: string;
 	phone: string;
 	date: MyDate;
-	time: time;
+	Time: Time;
 	guests: number;
 	table: number[];
 	note: string;
 }
 
-export const reservationList = writable<reservationInfo[]>([]);
+export const reservationList = writable<ReservationInfo[]>([]);
+export const newReservation = writable<ReservationInfo>();
