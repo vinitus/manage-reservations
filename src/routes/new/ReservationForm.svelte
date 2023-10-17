@@ -3,10 +3,9 @@
 	import GradationButton from './GradationButton.svelte';
 	import MultiSelect from './MultiSelect.svelte';
 	import event_available from '$lib/images/event_available.svg';
-	import mathMinus from '$lib/images/math-minus.svg';
-	import mathPlus from '$lib/images/math-plus.svg';
 	import edit from '$lib/images/edit.svg';
 	import ReservationInput from './ReservationInput.svelte';
+	import ReservationGuestsCounter from './ReservationGuestsCounter.svelte';
 
 	let isInputStarted = false;
 	let textareaValue = '';
@@ -59,12 +58,7 @@
 		>
 	</div>
 	<div class="row">
-		<div class="counter-wrapper">
-			<p>Guests</p>
-			<GradationButton imgSrc={mathMinus} alt="mathMinus" style="width:70px; height:70px;" />
-			<p class="count-num">1</p>
-			<GradationButton imgSrc={mathPlus} alt="mathPlus" style="width:70px; height:70px;" />
-		</div>
+		<ReservationGuestsCounter {reservationInfo} />
 		<MultiSelect />
 	</div>
 	<div class="row">
@@ -144,36 +138,6 @@
 		display: flex;
 		align-items: center;
 		color: #a8a29e;
-	}
-
-	.count-num {
-		font-size: 24px;
-		font-weight: 600;
-	}
-
-	.counter-wrapper {
-		width: 310px;
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-	}
-
-	.counter-wrapper * {
-		width: min-content;
-	}
-
-	.placeholder-div {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		border: none;
-		color: #a8a29e;
-		width: calc((100% - 40px) / 3);
-		height: 70px;
-		border-radius: 10px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
 	}
 
 	.star-p {
