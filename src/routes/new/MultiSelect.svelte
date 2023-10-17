@@ -1,5 +1,6 @@
 <script lang="ts">
 	import arrowDropDown from '$lib/images/arrow_drop_down.svg';
+	import { newReservation } from '$store';
 
 	export let selectTableSet: Set<number>;
 	export let dropdownIsOpen: boolean;
@@ -59,6 +60,11 @@
 							const { tableNum } = e.currentTarget.dataset;
 							if (checked) selectTableSet.add(Number(tableNum));
 							else selectTableSet.delete(Number(tableNum));
+
+							newReservation.update((item) => {
+								item.table = Array.from(selectTableSet).sort();
+								return item;
+							});
 						}}
 					/>
 					<label for={`${tableNum}`}>{tableNum}</label>
