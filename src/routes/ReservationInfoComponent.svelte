@@ -57,7 +57,15 @@
 		{/if}
 	</div>
 	<div class="row last">
-		<button class="trash-button"><img src={trash} alt="trash" /></button>
+		<button
+			class="trash-button"
+			on:click={() => {
+				reservationList.update((item) => {
+					item.splice(reservationIdx, 1);
+					return item;
+				});
+			}}><img src={trash} alt="trash" /></button
+		>
 		<button
 			class="seated-button"
 			on:click={() => {
