@@ -16,25 +16,45 @@
 	</div>
 	<div class="select-options" style={dropdownIsOpen ? 'display: block' : 'none'}>
 		<div class="option">
-			<input type="checkbox" name="vehicle" id="option1" value="" />
-			<label for="option1">Platform</label>
+			<input type="checkbox" name="1" id="1" value="1" />
+			<label for="1">1</label>
 		</div>
 		<div class="option">
-			<input type="checkbox" name="vehicle" id="option2" />
-			<label for="option2">Device ID</label>
+			<input type="checkbox" name="2" id="2" value="2" />
+			<label for="2">2</label>
 		</div>
 		<div class="option">
-			<input type="checkbox" name="vehicle" id="option3" />
-			<label for="option3">Token</label>
+			<input type="checkbox" name="3" id="3" value="3" />
+			<label for="3">3</label>
 		</div>
 		<div class="option">
-			<input type="checkbox" name="vehicle" id="option4" />
-			<label for="option4">Option 1</label>
+			<input type="checkbox" name="5" id="5" value="5" />
+			<label for="5">5</label>
+		</div>
+		<div class="option">
+			<input type="checkbox" name="6" id="6" value="6" />
+			<label for="6">6</label>
+		</div>
+		<div class="option">
+			<input type="checkbox" name="7" id="7" value="7" />
+			<label for="7">7</label>
+		</div>
+		<div class="option">
+			<input type="checkbox" name="8" id="8" value="8" />
+			<label for="8">8</label>
 		</div>
 	</div>
 </div>
 
 <style>
+	.option {
+		display: flex;
+	}
+
+	.option:hover {
+		background-color: #f6f8f9;
+	}
+
 	.select-list {
 		font-family: 'Open Sans', sans-serif;
 		color: #555;
@@ -84,5 +104,6 @@
 	.select-list .select-options .option label {
 		display: inline-block;
 		padding: 10px 30px 10px 10px;
+		width: 100%;
 	}
 </style>
