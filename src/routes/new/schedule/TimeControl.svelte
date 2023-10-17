@@ -18,7 +18,7 @@
 	<p />
 	<div class="col">
 		<img src={upImg} alt="upImg" />
-		<p style="font-size: 28px; margin: 24.5px 0px 23px 0px;">PM</p>
+		<p style="font-size: 28px; margin: 23px 0px 20px 0;">PM</p>
 		<img src={downImg} alt="downImg" />
 	</div>
 </div>

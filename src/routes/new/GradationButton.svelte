@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let imgSrc: string;
-	export let alt: string;
+	export let imgSrc: string | undefined = undefined;
+	export let alt: string | undefined = undefined;
 	export let style: string | undefined = undefined;
 </script>
 

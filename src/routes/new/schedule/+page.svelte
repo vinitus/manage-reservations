@@ -1,7 +1,9 @@
 <script>
+	import GradationButton from '../GradationButton.svelte';
 	import TimeControl from './TimeControl.svelte';
 	import alarmOn from '$lib/images/alarm_on.svg';
 	import today from '$lib/images/today.svg';
+	import trash from '$lib/images/trash.svg';
 </script>
 
 <section>
@@ -15,6 +17,13 @@
 			<input value="May 10" />
 		</div>
 		<TimeControl />
+		<div class="row">
+			<GradationButton imgSrc={trash} alt="trash" style="width: 68px; height: 52px;" />
+			<GradationButton
+				style="margin-left:35px; width: 100%; height: 52px; background: none; background-color: #E5501B; color:white; font-size: 18px;"
+				>Save</GradationButton
+			>
+		</div>
 	</div>
 </section>
 
