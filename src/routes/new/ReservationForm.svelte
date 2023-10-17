@@ -1,19 +1,26 @@
 <script lang="ts">
-	import { newReservation, type ReservationInfo } from '$store';
+	import { newReservation, dateTimeIsValid, type ReservationInfo } from '$store';
 	import GradationButton from './GradationButton.svelte';
 	import MultiSelect from './MultiSelect.svelte';
 	import event_available from '$lib/images/event_available.svg';
 	import ReservationInput from './ReservationInput.svelte';
 	import ReservationGuestsCounter from './ReservationGuestsCounter.svelte';
 	import ReservationAddNote from './ReservationAddNote.svelte';
+	import { afterUpdate } from 'svelte';
 
 	let isInputStarted = false;
 	let reservationInfo: ReservationInfo;
 	let selectTableSet = new Set<number>();
 	let dropdownIsOpen = false;
+	let dateTimeDone: boolean;
+	let isValid: boolean;
 
 	newReservation.subscribe((item) => {
 		reservationInfo = item;
+	});
+
+	dateTimeIsValid.subscribe((item) => {
+		dateTimeDone = item;
 	});
 
 	type ComposedEvent<T, U> = U & {
@@ -30,6 +37,7 @@
 			return item;
 		});
 	}
+
 	function phoneUpdateFn(e: InputComposedEvent) {
 		const value = e.currentTarget.value;
 		newReservation.update((item) => {
@@ -41,15 +49,41 @@
 	function escapeFn(e: InputComposedKeyboradEvent) {
 		e.key === 'Escape' && e.currentTarget.blur();
 	}
+
+	function finalCheckFn() {
+		let flag = true;
+		if (
+			!reservationInfo.name ||
+			!reservationInfo.phone ||
+			reservationInfo.table.length === 0 ||
+			!dateTimeDone
+		)
+			flag = false;
+
+		isValid = flag;
+	}
+
+	afterUpdate(() => {
+		finalCheckFn();
+	});
 </script>
 
 <form action="">
 	<div class="row">
-		<ReservationInput labelTarget="name" changeHandler={nameUpdateFn} escapeHandler={escapeFn}
+		<ReservationInput
+			value={reservationInfo.name}
+			labelTarget="name"
+			changeHandler={nameUpdateFn}
+			escapeHandler={escapeFn}
 			><p>Name</p>
 			<p class="star-p">*</p>
 		</ReservationInput>
-		<ReservationInput labelTarget="phone" changeHandler={phoneUpdateFn} escapeHandler={escapeFn}>
+		<ReservationInput
+			value={reservationInfo.phone}
+			labelTarget="phone"
+			changeHandler={phoneUpdateFn}
+			escapeHandler={escapeFn}
+		>
 			<p>Phone</p>
 			<p class="star-p">*</p>
 		</ReservationInput>
@@ -68,11 +102,9 @@
 		<button
 			type="button"
 			class="save-button"
+			style={isValid ? 'opacity: 1' : ''}
+			disabled={!isValid}
 			on:click={() => {
-				newReservation.update((item) => {
-					item.table = Array.from(selectTableSet).sort();
-					return item;
-				});
 				console.log(reservationInfo);
 			}}>Save</button
 		>
