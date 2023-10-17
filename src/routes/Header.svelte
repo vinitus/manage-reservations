@@ -6,7 +6,11 @@
 	export let isNew: boolean;
 
 	let length: number;
-	reservationList.subscribe((item) => (length = item.length));
+	reservationList.subscribe((item) => {
+		let cnt = 0;
+		item.forEach((info) => !info.isSeated && cnt++);
+		length = cnt;
+	});
 </script>
 
 <header class="header">
