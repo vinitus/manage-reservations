@@ -20,7 +20,7 @@
 </svelte:head>
 
 <section>
-	<Header isNew={true} />
+	<Header title={'Edit Reservation'} />
 	<ReservationForm
 		submitHandler={() => {
 			reservationList.update((item) => {

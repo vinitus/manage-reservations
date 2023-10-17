@@ -14,7 +14,7 @@
 </svelte:head>
 
 <section class="wrapper">
-	<Header isNew={false} />
+	<Header title={'Reservation'} />
 	<div class="reservation-wrapper">
 		{#each Object.entries(list) as [key, reservationInfo]}
 			{#if !reservationInfo.isSeated}

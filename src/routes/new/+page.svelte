@@ -8,7 +8,7 @@
 </svelte:head>
 
 <section>
-	<Header isNew={true} />
+	<Header title={'New Reservation'} />
 	<ReservationForm />
 </section>
 

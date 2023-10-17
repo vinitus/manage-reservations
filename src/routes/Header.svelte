@@ -3,7 +3,7 @@
 	import add from '$lib/images/add.svg';
 	import keyboard_backspace from '$lib/images/keyboard_backspace.svg';
 	import { reservationList } from '$store';
-	export let isNew: boolean;
+	export let title: string;
 
 	let length: number;
 	reservationList.subscribe((item) => {
@@ -15,7 +15,7 @@
 
 <header class="header">
 	<div>
-		{#if !isNew}
+		{#if title === 'Reservation'}
 			<a href="/new">
 				<img src={add} alt="add" />
 				<p>New Reservation</p>
@@ -27,11 +27,11 @@
 		{/if}
 	</div>
 	<div class="row">
-		{#if length > 0 && !isNew}
-			<h1 style="">{isNew ? 'New Reservation' : 'Reservation'}</h1>
+		{#if length > 0 && title === 'Reservation'}
+			<h1 style="">Reservation</h1>
 			<p class="length-p" style="margin-right: auto;">{length}</p>
 		{:else}
-			<h1 style="">{isNew ? 'New Reservation' : 'Reservation'}</h1>
+			<h1 style="margin-right: auto;">{title}</h1>
 		{/if}
 	</div>
 	<div>
