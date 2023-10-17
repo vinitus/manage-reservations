@@ -10,6 +10,20 @@
 	let date: MyDate;
 
 	newReservation.subscribe((item) => ({ time, date } = item));
+
+	function reset() {
+		newReservation.update((item) => {
+			item.date = {
+				month: 'May',
+				day: 10
+			};
+			item.time = {
+				hour: 14,
+				minute: 0
+			};
+			return item;
+		});
+	}
 </script>
 
 <section>
@@ -49,18 +63,35 @@
 		</div>
 		<TimeControl />
 		<div class="row">
-			<GradationButton style="width: 68px; height: 52px;"
-				><a href="/new"> <img src={trash} alt="trash" /></a></GradationButton
+			<GradationButton style="width: 68px; height: 52px;" onClick={reset}
+				><a href="/new" style=""> <img src={trash} alt="trash" /></a></GradationButton
 			>
 			<GradationButton
-				style="margin-left:35px; width: 100%; height: 52px; background: none; background-color: #E5501B; color:white; font-size: 18px;"
-				>Save</GradationButton
+				style="margin-left:35px; width: 100%; height: 52px; background: none; background-color: #E5501B;"
+				><a href="/new" class="save">Save</a></GradationButton
 			>
 		</div>
 	</div>
 </section>
 
 <style>
+	a {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.save {
+		color: white;
+		font-size: 18px;
+	}
+
+	a img {
+		width: 28px;
+	}
+
 	.row {
 		display: flex;
 		align-items: center;
