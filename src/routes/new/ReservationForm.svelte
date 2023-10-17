@@ -44,6 +44,8 @@
 	</div>
 	<div class="row">
 		{#if isInputStarted}
+			<!-- textarea가 조건부로 렌더링되기 때문에 autofocus를 사용해도 괜찮을 것이라고 판단 -->
+			<!-- svelte-ignore a11y-autofocus -->
 			<textarea
 				autofocus
 				bind:value={textareaValue}
