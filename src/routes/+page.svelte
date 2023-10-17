@@ -16,8 +16,10 @@
 <section class="wrapper">
 	<Header isNew={false} />
 	<div class="reservation-wrapper">
-		{#each list as reservationInfo}
-			<ReservationInfoComponent {reservationInfo} />
+		{#each Object.entries(list) as [key, reservationInfo]}
+			{#if !reservationInfo.isSeated}
+				<ReservationInfoComponent {reservationInfo} reservationIdx={Number(key)} />
+			{/if}
 		{/each}
 	</div>
 </section>

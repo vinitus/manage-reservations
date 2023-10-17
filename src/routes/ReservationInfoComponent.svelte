@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ReservationInfo } from '$store';
+	import { reservationList, type ReservationInfo } from '$store';
 	import phoneSrc from '$lib/images/phone.svg';
 	import checkedCalendar from '$lib/images/event_available.svg';
 	import group from '$lib/images/group.svg';
@@ -7,6 +7,7 @@
 	import trash from '$lib/images/trash.svg';
 
 	export let reservationInfo: ReservationInfo;
+	export let reservationIdx: number;
 
 	const { name, phone, date, time, guests, table, note } = reservationInfo;
 
@@ -57,7 +58,15 @@
 	</div>
 	<div class="row last">
 		<button class="trash-button"><img src={trash} alt="trash" /></button>
-		<button class="seated-button"> Seated </button>
+		<button
+			class="seated-button"
+			on:click={() => {
+				reservationList.update((item) => {
+					item[reservationIdx].isSeated = true;
+					return item;
+				});
+			}}>Seated</button
+		>
 	</div>
 </div>
 

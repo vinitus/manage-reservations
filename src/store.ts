@@ -30,6 +30,7 @@ export interface ReservationInfo {
 	guests: number;
 	table: number[];
 	note: string;
+	isSeated: boolean;
 }
 
 export const reservationList = writable<ReservationInfo[]>([]);
@@ -46,6 +47,7 @@ export const newReservation = writable<ReservationInfo>({
 	},
 	guests: 1,
 	table: [],
-	note: ''
+	note: '',
+	isSeated: false
 });
 export const dateTimeIsValid = writable<boolean>(false);
