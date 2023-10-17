@@ -1,4 +1,5 @@
 <script>
+	import arrowDropDown from '$lib/images/arrow_drop_down.svg';
 	let dropdownIsOpen = false;
 </script>
 
@@ -10,7 +11,8 @@
 		tabindex={0}
 		on:keydown={() => (dropdownIsOpen = !dropdownIsOpen)}
 	>
-		Configure Table
+		Select Table
+		<img src={arrowDropDown} alt="arrowDropDown" />
 	</div>
 	<div class="select-options" style={dropdownIsOpen ? 'display: block' : 'none'}>
 		<div class="option">
@@ -51,12 +53,9 @@
 		width: 480px;
 	}
 
-	.select-list .title::after {
+	.title img {
 		display: inline-block;
-		content: '>';
 		margin-left: auto;
-		font-size: 11px;
-		transform: rotate(90deg) scale(1, 2);
 	}
 
 	.select-list .select-options {
